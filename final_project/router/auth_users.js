@@ -53,8 +53,12 @@ regd_users.post("/login", (req, res) => {
 // Add a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
   let review = req.query.review
+  let isbn = req.params.isbn
+  if (!books[isbn]) return res.status(404).json({ message: "Book with ISBN " + isbn + " not found."})
+  let username = req.session.authorization.username
   if(review) {
-    
+    let bookToAddReview = books[isbn]
+    bookToAddReview.reviews.username
   }
 });
 
